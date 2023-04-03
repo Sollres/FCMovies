@@ -11,6 +11,9 @@ import 'package:films/model/person.dart';
 import 'package:films/pages/category_screen.dart';
 import 'package:films/pages/movie_detail_screen.dart';
 import 'package:films/pages/profile_screen.dart';
+import 'package:films/pages/sign_up_screen.dart';
+import 'package:films/widget/logout.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +26,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      Navigator.pushReplacementNamed(context, '/login');
+    }
+    
     return MultiBlocProvider(
       providers: [
         BlocProvider<MovieBloc>(
@@ -52,6 +60,9 @@ class HomePage extends StatelessWidget {
                 ),
           ),
           actions: [
+            Container(
+              child: const SignOutButton(),
+            ),
             Container(
               margin: const EdgeInsets.only(right: 15.0),
               child: GestureDetector(

@@ -10,6 +10,7 @@ import 'package:films/bloc/personbloc/person_state.dart';
 import 'package:films/model/person.dart';
 import 'package:films/pages/category_screen.dart';
 import 'package:films/pages/movie_detail_screen.dart';
+import 'package:films/pages/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,10 +54,16 @@ class HomePage extends StatelessWidget {
           actions: [
             Container(
               margin: const EdgeInsets.only(right: 15.0),
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage(
-                    'assets/images/account.png'), //Video 3:27 : https://www.youtube.com/watch?v=K_fwPOKBdZo&t=1872s
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Profile(),),);
+                },
+                child: const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage(
+                      'assets/images/account.png'), //Video 3:27 : https://www.youtube.com/watch?v=K_fwPOKBdZo&t=1872s
+                ),
               ),
             ),
           ],
@@ -110,8 +117,9 @@ class HomePage extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MovieDetailScreen(movie: movie)),
-                                    );
+                                        builder: (context) =>
+                                            MovieDetailScreen(movie: movie)),
+                                  );
                                 },
                                 child: Stack(
                                   alignment: Alignment.bottomLeft,
@@ -125,7 +133,8 @@ class HomePage extends StatelessWidget {
                                         height:
                                             MediaQuery.of(context).size.height /
                                                 3,
-                                        width: MediaQuery.of(context).size.width,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) => Platform
                                                 .isAndroid
@@ -224,7 +233,8 @@ class HomePage extends StatelessWidget {
 
                                                 String url = '';
 
-                                                if (person.profilePath != null) {
+                                                if (person.profilePath !=
+                                                    null) {
                                                   url =
                                                       'https://image.tmdb.org/t/p/w200${person.profilePath}';
                                                 } else {
@@ -249,7 +259,7 @@ class HomePage extends StatelessWidget {
                                                           child:
                                                               CachedNetworkImage(
                                                             imageUrl:
-                                                                /*'https://image.tmdb.org/t/p/w200${person.profilePath}'*/url,
+                                                                /*'https://image.tmdb.org/t/p/w200${person.profilePath}'*/ url,
                                                             imageBuilder: (context,
                                                                 imageProvider) {
                                                               return Container(
@@ -324,7 +334,9 @@ class HomePage extends StatelessWidget {
                                                       Container(
                                                         child: Center(
                                                           child: Text(
-                                                            person.knownForDepartment.toUpperCase(),
+                                                            person
+                                                                .knownForDepartment
+                                                                .toUpperCase(),
                                                             style:
                                                                 const TextStyle(
                                                               color:

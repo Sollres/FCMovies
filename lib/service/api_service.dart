@@ -80,7 +80,7 @@ class ApiService {
 Future<MovieDetail> getMovieDetail(int movieId) async {
     try {
      
-      final response = await _dio.get('$baseUrl/genre/movie/$movieId?$apiKey');
+      final response = await _dio.get('$baseUrl/movie/$movieId?$apiKey');
       MovieDetail movieDetail = MovieDetail.fromJson(response.data);
       
       movieDetail.trailerId = await getYoutubeId(movieId);
@@ -122,7 +122,7 @@ Future<List<Cast>> getCastList(int movieId) async {
       List<Cast> castList = list.map((c) => Cast(
         name: c['name'],
         profilePath: c['profil_path'],
-        caractere: c['caractere'])).toList();
+        character: c['caractere'])).toList();
       return castList;
     }catch (error, stacktrace) {
       throw Exception('Exception accoured: $error with stacktrace: $stacktrace');

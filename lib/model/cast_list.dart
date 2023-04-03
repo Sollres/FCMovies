@@ -7,19 +7,19 @@ class CastList{
 class Cast{
   final String name;
   final String profilePath;
-  final String caractere;
+  final String character;
 
-  Cast({required this.name, required this.profilePath, required this.caractere});
+  Cast({required this.name, required this.profilePath, required this.character});
 
   factory Cast.fromJson(dynamic json){
     if(json == null){
-      return Cast(caractere: '', name: '', profilePath: '');
+      return Cast(character: '', name: '', profilePath: '');
     }
 
     return Cast(
       name: json['name'],
       profilePath: json['profil_path'],
-      caractere: json['caractere']);
+      character: json['character']);
 
   }
 

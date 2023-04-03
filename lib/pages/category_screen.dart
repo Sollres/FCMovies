@@ -9,6 +9,7 @@ import 'package:films/bloc/moviebloc/movie_bloc_event.dart';
 import 'package:films/bloc/moviebloc/movie_bloc_state.dart';
 import 'package:films/model/genre.dart';
 import 'package:films/model/movie.dart';
+import 'package:films/pages/movie_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -169,40 +170,48 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ClipRRect(
-                          child: CachedNetworkImage(
-                            imageUrl: url,
-                            imageBuilder: (context, imageProvider) {
-                              return Container(
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MovieDetailScreen(movie: movie))
+                            );
+                          },
+                          child: ClipRRect(
+                            child: CachedNetworkImage(
+                              imageUrl: url,
+                              imageBuilder: (context, imageProvider) {
+                                return Container(
+                                  width: 180,
+                                  height: 250,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(12),
+                                    ),
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                );
+                              },
+                              placeholder: (context, url) => Container(
                                 width: 180,
                                 height: 250,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(12),
-                                  ),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
+                                child: Center(
+                                  child: Platform.isAndroid
+                                      ? CircularProgressIndicator()
+                                      : CupertinoActivityIndicator(),
                                 ),
-                              );
-                            },
-                            placeholder: (context, url) => Container(
-                              width: 180,
-                              height: 250,
-                              child: Center(
-                                child: Platform.isAndroid
-                                    ? CircularProgressIndicator()
-                                    : CupertinoActivityIndicator(),
                               ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              width: 180,
-                              height: 250,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'asset/images/img_not_found.jpg')),
+                              errorWidget: (context, url, error) => Container(
+                                width: 180,
+                                height: 250,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'asset/images/img_not_found.jpg')),
+                                ),
                               ),
                             ),
                           ),

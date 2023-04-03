@@ -1,6 +1,6 @@
 class Movie {
   final String? backdropPath;
-  final int? id;
+  final int id;
   final String? originalLanguage;
   final String? originalTitle;
   final String? overview;
@@ -16,7 +16,7 @@ class Movie {
 
   Movie({
     this.backdropPath,
-    this.id,
+    required this.id,
     this.originalLanguage,
     this.originalTitle,
     this.overview,
@@ -31,7 +31,7 @@ class Movie {
 
   factory Movie.fromJson(dynamic json) {
     if (json == null) {
-      return Movie(title: '', voteAverage: '0');
+      return Movie(title: '', voteAverage: '0', id: 0);
     }
 
     return Movie(

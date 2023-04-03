@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:films/model/movie_detail.dart';
 import 'package:films/model/person.dart';
 
+import '../model/cast_list.dart';
 import '../model/genre.dart';
 import '../model/movie.dart';
+import '../model/movie_image.dart';
 
 class ApiService {
   final Dio _dio = Dio();
@@ -71,5 +74,59 @@ class ApiService {
       throw Exception('Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
+
+
+
+Future<MovieDetail> getMovieDetail(int movieId) async {
+    try {
+     
+      final response = await _dio.get('$baseUrl/genre/movie/$movieId?$apiKey');
+      MovieDetail movieDetail = MovieDetail.fromJson(response.data);
+      
+      movieDetail.trailerId = await getYoutubeId(movieId);
+
+      movieDetail.movieImage = await getMovieImage(movieId);
+
+      movieDetail.castList = await getCastList(movieId);
+
+      return movieDetail;
+    }catch (error, stacktrace) {
+      
+      throw Exception('Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+Future<String> getYoutubeId(int id) async {
+    try {
+      final response = await _dio.get('$baseUrl/movie/$id/videos?$apiKey');
+      var youtubeId = response.data['results'][0]['key'];
+      return youtubeId;
+    }catch (error, stacktrace) {
+      throw Exception('Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+Future<MovieImage> getMovieImage(int movieId) async {
+    try {
+      final response = await _dio.get('$baseUrl/movie/$movieId/images?$apiKey');
+      return MovieImage.fromJson(response.data);
+    }catch (error, stacktrace) {
+      throw Exception('Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+Future<List<Cast>> getCastList(int movieId) async {
+    try {
+      final response = await _dio.get('$baseUrl/movie/$movieId/credits?$apiKey');
+      var list = response.data['cast'] as List;
+      List<Cast> castList = list.map((c) => Cast(
+        name: c['name'],
+        profilePath: c['profil_path'],
+        caractere: c['caractere'])).toList();
+      return castList;
+    }catch (error, stacktrace) {
+      throw Exception('Exception accoured: $error with stacktrace: $stacktrace');
+    }
+}
 
 }

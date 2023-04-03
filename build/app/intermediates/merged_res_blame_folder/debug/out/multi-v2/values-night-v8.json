@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/films/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/fc_movies/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/films/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/fc_movies/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

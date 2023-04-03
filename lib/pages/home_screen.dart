@@ -4,6 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:films/bloc/moviebloc/movie_bloc_event.dart';
 import 'package:films/bloc/moviebloc/movie_bloc_state.dart';
+import 'package:films/bloc/personbloc/person_bloc.dart';
+import 'package:films/bloc/personbloc/person_event.dart';
+import 'package:films/bloc/personbloc/person_state.dart';
+import 'package:films/model/person.dart';
 import 'package:films/pages/category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +25,10 @@ class HomePage extends StatelessWidget {
       providers: [
         BlocProvider<MovieBloc>(
           create: (_) => MovieBloc()..add(const MovieEventStarted(0, '')),
-        )
+        ),
+        BlocProvider<PersonBloc>(
+          create: (_) => PersonBloc()..add(const PersonEventStarted()),
+        ),
       ],
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 75, 71, 65),
@@ -34,7 +41,7 @@ class HomePage extends StatelessWidget {
             color: Colors.black45,
           ),
           title: Text(
-            'Films'.toUpperCase(),
+            'FCMovies'.toUpperCase(),
             style: Theme.of(context).textTheme.caption?.copyWith(
                   color: Colors.white,
                   fontSize: 20,
@@ -80,6 +87,19 @@ class HomePage extends StatelessWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 45.0, vertical: 5.0),
+                            child: Text(
+                              'Popular'.toUpperCase(),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontFamily: 'muli',
+                              ),
+                            ),
+                          ),
                           CarouselSlider.builder(
                             itemCount: movies.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -148,11 +168,178 @@ class HomePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const <Widget>[
-                                SizedBox(
+                              children: <Widget>[
+                                const SizedBox(
                                   height: 12,
                                 ),
-                                BuildWidgetCategory(),
+                                const BuildWidgetCategory(),
+                                Text(
+                                  'Trending persons on this week'.toUpperCase(),
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'muli',
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                //Person debut
+                                Column(
+                                  children: <Widget>[
+                                    BlocBuilder<PersonBloc, PersonState>(
+                                      builder: (context, state) {
+                                        if (state is PersonLoading) {
+                                          return Center();
+                                        } else if (state is PersonLoaded) {
+                                          List<Person> personList =
+                                              state.personList;
+                                          //print(personList.length);
+
+                                          return Container(
+                                            height: 110,
+                                            child: ListView.separated(
+                                              scrollDirection: Axis.horizontal,
+                                              itemCount: personList.length,
+                                              separatorBuilder:
+                                                  (context, index) =>
+                                                      const VerticalDivider(
+                                                color: Colors.transparent,
+                                                width: 5,
+                                              ),
+                                              itemBuilder: (context, index) {
+                                                Person person =
+                                                    personList[index];
+
+                                                String url = '';
+
+                                                if (person.profilePath != null) {
+                                                  url =
+                                                      'https://image.tmdb.org/t/p/w200${person.profilePath}';
+                                                } else {
+                                                  url =
+                                                      'https://image.tmdb.org/t/p/original/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg';
+                                                  index = index + 1;
+                                                  print(person.profilePath);
+                                                }
+                                                return Container(
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Card(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      100),
+                                                        ),
+                                                        elevation: 3,
+                                                        child: ClipRRect(
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl:
+                                                                /*'https://image.tmdb.org/t/p/w200${person.profilePath}'*/url,
+                                                            imageBuilder: (context,
+                                                                imageProvider) {
+                                                              return Container(
+                                                                width: 80,
+                                                                height: 80,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      const BorderRadius
+                                                                          .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                            100),
+                                                                  ),
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image:
+                                                                        imageProvider,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    Container(
+                                                              width: 80,
+                                                              height: 80,
+                                                              child: Center(
+                                                                child: Platform
+                                                                        .isAndroid
+                                                                    ? CircularProgressIndicator()
+                                                                    : CupertinoActivityIndicator(),
+                                                              ),
+                                                            ),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Container(
+                                                              width: 80,
+                                                              height: 80,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  image: AssetImage(
+                                                                      'assets/images/img_not_found.jpg'),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        child: Center(
+                                                          child: Text(
+                                                            person.name
+                                                                .toUpperCase(),
+                                                            style:
+                                                                const TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 8,
+                                                              fontFamily:
+                                                                  'muli',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        child: Center(
+                                                          child: Text(
+                                                            person.knownForDepartment.toUpperCase(),
+                                                            style:
+                                                                const TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 8,
+                                                              fontFamily:
+                                                                  'muli',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                //Person fin
                               ],
                             ),
                           ),

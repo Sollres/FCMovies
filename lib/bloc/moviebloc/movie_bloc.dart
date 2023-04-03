@@ -21,8 +21,12 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     try {
       List<Movie> movieList= [];
       if (movieId == 0) {
-        movieList = await service.getNowPlayingMovie();
+        movieList = await service.getPopularMovie();
+      }else{
+        //print(movieId);
+        movieList = await service.getMovieByGenre(movieId);   //getNowPlayingMovie();
       }
+
       yield MovieLoaded(movieList);
     } on Exception catch (e) {
       print(e);

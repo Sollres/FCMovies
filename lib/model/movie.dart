@@ -10,7 +10,7 @@ class Movie {
   final String title;
   final bool? video;
   final int? voteCount;
-  final String? voteAverage;
+  final String voteAverage;
 
   String? error;
 
@@ -26,12 +26,12 @@ class Movie {
     required this.title,
     this.video,
     this.voteCount,
-    this.voteAverage,
+    required this.voteAverage,
   });
 
   factory Movie.fromJson(dynamic json) {
     if (json == null) {
-      return Movie(title: '');
+      return Movie(title: '', voteAverage: '0');
     }
 
     return Movie(

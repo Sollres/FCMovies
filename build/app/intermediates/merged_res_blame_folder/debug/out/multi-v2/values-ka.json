@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/films/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ka/values-ka.xml",
+            "outputFile": "/Users/collinssoares/Documents/Master1_22_23/Projet/flutter_projects/fc_movies/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ka/values-ka.xml",
             "map": [
                 {
                     "source": "/Users/collinssoares/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/res/values-ka/values-ka.xml",

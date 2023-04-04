@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
           ),
           title: Text(
             'FCMovies'.toUpperCase(),
-            style: Theme.of(context).textTheme.caption?.copyWith(
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -60,9 +60,6 @@ class HomePage extends StatelessWidget {
                 ),
           ),
           actions: [
-            Container(
-              child: const SignOutButton(),
-            ),
             Container(
               margin: const EdgeInsets.only(right: 15.0),
               child: GestureDetector(

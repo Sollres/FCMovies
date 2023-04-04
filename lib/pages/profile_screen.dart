@@ -1,3 +1,4 @@
+import 'package:films/widget/logout.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -39,31 +40,43 @@ class Profile extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10.0,
-          vertical: 10.0,
-        ),
-        child: Row(
-          children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.white,
-              //backgroundImage: AssetImage('assets/images/home.png'),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            Text(
-              'Welcome Collins!'.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontFamily: 'muli',
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10.0,
+            vertical: 10.0,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.white,
+                //backgroundImage: AssetImage('assets/images/home.png'),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Welcome Collins!'.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: 'muli',
+                ),
+              ),
+              const Expanded(child: SizedBox()),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                width: double.infinity,
+                child: SignOutButton(),
+              ),
+            ],
+          ),
         ),
       ),
     );

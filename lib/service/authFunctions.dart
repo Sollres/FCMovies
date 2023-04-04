@@ -15,6 +15,9 @@ class AuthServices {
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
       await FirestoreServices.saveUser(name, email, userCredential.user!.uid);
 
+      // Redirect to the Home page after successful sign-in
+      Navigator.pushReplacementNamed(context, '/home');
+
       // Wrap ScaffoldMessenger in a Builder widget
       Builder(builder: (context) {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -17,6 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../bloc/moviebloc/movie_bloc.dart';
 import '../model/movie.dart';
@@ -65,7 +66,7 @@ class HomePage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Profile(),),);
+                      MaterialPageRoute(builder: (context) => Profile(userId: user!.uid,),),);
                 },
                 child: const CircleAvatar(
                   backgroundColor: Colors.white,
@@ -107,7 +108,7 @@ class HomePage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 45.0, vertical: 5.0),
                             child: Text(
-                              'Popular'.toUpperCase(),
+                              AppLocalizations.of(context)!.popular.toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -201,7 +202,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 const BuildWidgetCategory(),
                                 Text(
-                                  'Trending persons on this week'.toUpperCase(),
+                                  AppLocalizations.of(context)!.trendingPerson.toUpperCase(),
                                   style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,

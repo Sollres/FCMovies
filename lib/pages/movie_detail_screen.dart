@@ -11,6 +11,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import '../model/cast_list.dart';
 import '../model/movie.dart';
@@ -125,7 +127,7 @@ class MovieDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Overview'.toUpperCase(),
+                              AppLocalizations.of(context)!.overview.toUpperCase(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -163,7 +165,7 @@ class MovieDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Release date'.toUpperCase(),
+                                AppLocalizations.of(context)!.release.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -189,7 +191,7 @@ class MovieDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'run time'.toUpperCase(),
+                                AppLocalizations.of(context)!.length.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -215,7 +217,7 @@ class MovieDetailScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Budget'.toUpperCase(),
+                                AppLocalizations.of(context)!.budget.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -242,7 +244,7 @@ class MovieDetailScreen extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        'Screenshots'.toUpperCase(),
+                        AppLocalizations.of(context)!.screenshots.toUpperCase(),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'muli',
@@ -289,7 +291,7 @@ class MovieDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'Casts'.toUpperCase(),
+                        AppLocalizations.of(context)!.casts.toUpperCase(),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'muli',
@@ -405,9 +407,3 @@ class MovieDetailScreen extends StatelessWidget {
     });
   }
 }
-
-//minute 38:41 dans  movie_detail ajout la ligne String trailerId; 
-//idem min 42:21 MovieImage movieImage avant movieDetail apres trailerId;
-//idem min 47:13 List<Cast> castList;
-//min 51:37  dans categorie ligne 162 juste avant le lien internet le clipRREct faut le widget et 
-//faut renommer le "Widget" en GestureDetector et ajouter les lignes de code à la suite voir vidéo

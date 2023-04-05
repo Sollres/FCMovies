@@ -1,6 +1,10 @@
 import 'package:films/service/authFunctions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -45,14 +49,14 @@ class _LoginFormState extends State<LoginForm> {
                     ? Container()
                     : TextFormField(
                         key: const ValueKey('fullname'),
-                        decoration: const InputDecoration(
-                          hintText: 'Enter Full Name',
-                          hintStyle: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!.enterFullName,
+                          hintStyle: const TextStyle(color: Colors.white),
                         ),
                         style: const TextStyle(color: Colors.white),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Please Enter Full Name';
+                            return AppLocalizations.of(context)!.enterFullNameAgain;
                           } else {
                             return null;
                           }
@@ -67,14 +71,14 @@ class _LoginFormState extends State<LoginForm> {
                 // ======== Email ========
                 TextFormField(
                   key: const ValueKey('email'),
-                  decoration: const InputDecoration(
-                    hintText: 'Enter Email',
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.enterEmail,
                     hintStyle: TextStyle(color: Colors.white),
                   ),
                   style: const TextStyle(color: Colors.white), 
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
-                      return 'Please Enter valid Email';
+                      return AppLocalizations.of(context)!.enterEmailAgain;
                     } else {
                       return null;
                     }
@@ -89,14 +93,14 @@ class _LoginFormState extends State<LoginForm> {
                 TextFormField(
                   key: const ValueKey('password'),
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter Password',
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.enterPassword,
                     hintStyle: TextStyle(color: Colors.white),
                   ),
                   style: const TextStyle(color: Colors.white),
                   validator: (value) {
                     if (value!.length < 6) {
-                      return 'Please Enter Password of min length 6';
+                      return AppLocalizations.of(context)!.enterPasswordAgain;
                     } else {
                       return null;
                     }
@@ -124,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
                                   email, password, fullname, context);
                         }
                       },
-                      child: Text(login ? 'Login' : 'Signup')),
+                      child: Text(login ? AppLocalizations.of(context)!.login : AppLocalizations.of(context)!.signup)),
                 ),
                 const SizedBox(
                   height: 10,
@@ -136,8 +140,8 @@ class _LoginFormState extends State<LoginForm> {
                       });
                     },
                     child: Text(login
-                        ? "Don't have an account? Signup"
-                        : "Already have an account? Login",
+                        ? AppLocalizations.of(context)!.noAccount
+                        : AppLocalizations.of(context)!.yesAccount,
                         ),)
               ],
             ),
@@ -147,3 +151,6 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
+
+
+

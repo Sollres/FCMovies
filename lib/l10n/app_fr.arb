@@ -1,0 +1,28 @@
+{
+    "enterFullName": "Entrez votre nom",
+    "enterFullNameAgain": "Entrez votre nom s'il vous plait!",
+    "enterEmail": "Entrez votre email",
+    "enterEmailAgain": "Entrez une email valide s'il vous plait!",
+    "enterPassword": "Entrez votre mot de passe",
+    "enterPasswordAgain": "Entrez un mot de passe de 6 caracteres minimum",
+    "login": "Connexion",
+    "signup": "Inscription",
+    "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous",
+    "yesAccount": "Vous avez déja un compte ? Connecter vous",
+    "name": "Pseudo  : {name}",
+    "email": "Email : {email}",
+    "edit": "Modifier",
+    "language": "Langues",
+    "popular": "Populaire",
+    "trendingPerson": "Les personnes de la semaine",
+    "overview": "Synopsis",
+    "release": "Date de sortie",
+    "length": "Durée",
+    "budget": "Budget",
+    "screenshots": "Capture d'écran",
+    "casts": "Casting",
+    "newplaying": "Nouveautés",
+    "signout": "Deconnexion"
+    
+}
+  

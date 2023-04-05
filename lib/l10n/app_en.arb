@@ -1,0 +1,28 @@
+{
+    "enterFullName": "Enter Full Name",
+    "enterFullNameAgain": "Please Enter Full Name",
+    "enterEmail": "Enter Email",
+    "enterEmailAgain": "Please Enter valid Email",
+    "enterPassword": "Enter Password",
+    "enterPasswordAgain": "Please Enter Password of min length 6",
+    "login": "Login",
+    "signup": "Signup",
+    "noAccount": "Don't have an account? Signup",
+    "yesAccount": "Already have an account? Login",
+    "name":  "Name  : {name}",
+    "email": "Email : {email}",
+    "edit": "Edit",
+    "language": "Languages",
+    "popular": "Popular",
+    "trendingPerson": "Trending persons on this week",
+    "overview": "Overview",
+    "release": "Release date",
+    "length": "run time",
+    "budget": "Budget",
+    "screenshots": "Screenshots",
+    "casts": "Casts",
+    "newplaying": "Nouveautés",
+    "signout": "Sign out"
+    
+}
+  
